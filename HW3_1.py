@@ -25,3 +25,61 @@ with them assuming there could be broken records, incorrect file structure, etc.
 this problem is to teach you how to work with file input correctly.
 Note 2: When your algorithm is done with working on the file, it must not forget to close it.
 '''
+
+def getHeading(file):
+    heading = file.readline().strip()
+    if heading != "account_id,total_debt,contact_email":
+        print("Invalid file format!")
+        return 0
+
+def getThreeElements(line):
+    elem = line.split(",")
+    if len(elem) == 2:
+        return elem[0], elem[1], ""
+    return elem
+
+def checkInt(test):
+    if test.isdigit():
+        return int(test)
+    else:
+        return -1
+
+def checkFloat(test):
+    try:
+        return float(test)
+    except ValueError:
+        return -1
+
+def getFile(file_name):
+    i = 1
+    try: 
+        with open(file_name, "r") as file:
+            if getHeading(file) == 0:
+                return 0
+            sum = 0
+            for line in file:
+                i += 1
+                line = line.strip()
+                if len(line) > 0:
+                    integer, floats, string = getThreeElements(line)
+                    account_id = checkInt(integer)
+                    total_debt = checkFloat(floats)
+                    if account_id == -1:
+                        print(f"Error in line {i}: Invalid input for account_id")
+                        return 0
+                    if total_debt == -1:
+                        print(f"Error in line {i}: Invalid input for total_debt")
+                        return 0
+                    sum += total_debt
+            print(f"The total debt is {sum}")    
+
+    except FileNotFoundError as e:
+        print("File Not Found!")
+        return 0
+    except ValueError as e:
+        print(f"Error in line {i}: {e}")
+        return 0
+
+file_name = input("Please Enter A File: ")
+if getFile(file_name) == 0:
+    print("Exiting Program")

@@ -12,3 +12,12 @@ evaluate the sum of values starting from start_value and going up to stop_value 
 step, including the stop_value in case it fits to the pattern (i.e., if stop_value = start_value
 + m * step for some positive integer m).
 '''
+
+import arrays_special
+
+
+print(arrays_special.float_range(1,11,2))
+print(arrays_special.float_range(1,11,3))
+print(arrays_special.float_range(1,-1,3))
+print(arrays_special.float_range(1,11,-3))
+print(arrays_special.float_range(1,11,-3))
