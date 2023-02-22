@@ -14,7 +14,6 @@ get_index_sorted_non_unique(arr, elem)
 def get_index_sorted_non_unique(arr, elem):
     lo = 0
     hi = len(arr)-1
-    found = 0
 
     while (lo <= hi):
         if lo > hi or lo < 0:
@@ -43,13 +42,12 @@ def get_index_sorted_non_unique(arr, elem):
             else:
                 return -1
 
-#arr = [-17, -10, -3, -3, -3, -3, -3, 10, 15]
-arr = [-17, -10, -3, 0, 0, 3, 5, 5, 10, 15]
+arr = [-17, -10, -3, -3, -3, -3, -3, 10, 15]
+#arr = [-17, -10, -3, 0, 0, 3, 5, 5, 10, 15]
 #arr = []
-#x = -3
+x = -3
 #x = 7
 #x = 5
-x = 3
 res_index = get_index_sorted_non_unique(arr, x)
 
 if len(arr) == 0:

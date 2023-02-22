@@ -26,12 +26,14 @@ this problem is to teach you how to work with file input correctly.
 Note 2: When your algorithm is done with working on the file, it must not forget to close it.
 '''
 
+
 def getHeading(file):
     heading = file.readline().strip()
     if heading != "account_id,total_debt,contact_email":
         print("Invalid file format!")
         return 0
 
+#This is in case the due to format of the commas, doesn't recognize that there are three elements, although there is nothing to be done for strings
 def getThreeElements(line):
     elem = line.split(",")
     if len(elem) == 2:
@@ -58,9 +60,9 @@ def getFile(file_name):
                 return 0
             sum = 0
             for line in file:
-                i += 1
                 line = line.strip()
                 if len(line) > 0:
+                    i += 1 # only accounts for lines that contain content, inclusive of header
                     integer, floats, string = getThreeElements(line)
                     account_id = checkInt(integer)
                     total_debt = checkFloat(floats)
@@ -71,6 +73,7 @@ def getFile(file_name):
                         print(f"Error in line {i}: Invalid input for total_debt")
                         return 0
                     sum += total_debt
+            print("Well Formatted File")
             print(f"The total debt is {sum}")    
 
     except FileNotFoundError as e:

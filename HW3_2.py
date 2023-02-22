@@ -13,11 +13,27 @@ step, including the stop_value in case it fits to the pattern (i.e., if stop_val
 + m * step for some positive integer m).
 '''
 
+''' NOTE: when you print the array out, there is precision error because we are doing arithmetic with floating points.
+Instead to combat this, there are external libraries like Decimal to combat this. However, since we're not really printing
+the array, I figured it wasn't important to include'''
+
 import arrays_special
+import math
 
+#Testing function
+start_value = 1.0
+end_value = 2.0
+step  = 0.2
 
-print(arrays_special.float_range(1,11,2))
-print(arrays_special.float_range(1,11,3))
-print(arrays_special.float_range(1,-1,3))
-print(arrays_special.float_range(1,11,-3))
-print(arrays_special.float_range(1,11,-3))
+#Calling Function
+arr = arrays_special.float_range(start_value, end_value, step)
+
+#Summing resulting array
+sum = 0
+for i in arr:
+    if math.isclose(i+step, end_value):
+        sum += end_value
+    sum += i
+
+print(sum)
+
